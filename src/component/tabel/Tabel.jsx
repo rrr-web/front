@@ -65,8 +65,8 @@ export function CustomTable() {
           <Table>
             <TableHead sx={{ textAlign: 'center' }}>
               <TableRow>
-                <TableCell style={{ position: 'sticky', left: 0, zIndex: 1 }}>No</TableCell>
-                <TableCell style={{ position: 'sticky', left: 50, zIndex: 1 }}>Deskripsi Item</TableCell>
+                <TableCell style={{ position: 'sticky', backgroundColor: '#fff', left: 0, zIndex: 1 }}>No</TableCell>
+                <TableCell style={{ position: 'sticky', backgroundColor: '#fff', left: 50, zIndex: 1 }}>Deskripsi Item</TableCell>
                 <TableCell>Panduan Service</TableCell>
                 <TableCell>P.N</TableCell>
                 <TableCell>Sudah Dikerjakan</TableCell>
