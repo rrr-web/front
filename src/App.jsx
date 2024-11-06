@@ -1,14 +1,10 @@
 import React from 'react';
-import { CustomTable } from './component/tabel/Tabel';
-import { Login } from './component/formLogin/Login';
-import { FormPrev } from './component/formPm/FormPrev';
+import { Layout } from './component/Layout';
 
 function App() {
   return (
     <>
-    < FormPrev />
-    {/* <Login /> */}
-    {/* <CustomTable /> */}
+    <Layout />
     </>
   )
 }

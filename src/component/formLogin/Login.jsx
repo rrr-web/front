@@ -33,7 +33,7 @@ export function Login(){
             <Box component="form" noValidate autoComplete="off">
                 
                 <TextField 
-                    label="Email" 
+                    label="Username" 
                     variant="outlined" 
                     fullWidth 
                     margin="normal" 
