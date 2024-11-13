@@ -8,17 +8,22 @@ import TableCell from "@mui/material/TableCell";
 import Box from "@mui/material/Box";
 import TableRowComponent from "./TableRowComponent";
 import initialData from "./source/data";
-import { TableContainer, TextField } from "@mui/material";
+import { Button, TableContainer, TextField } from "@mui/material";
 
 export function CustomTable({ onChange, pmType }) {
   const [data, setData] = useState([]);
   const [backlog, setBacklog] = useState("");
+  const [keterangan, setKeterangan] = useState("");
 
   useEffect(() => {
     // Ambil data yang sesuai dengan pmType dari initialData
     const dataFormType = initialData[pmType] || []
     setData(dataFormType) 
   }, [pmType]);
+
+  useEffect(() =>{
+    onChange({ backlog, keterangan, submittedData: getCurrentData() });
+  },[backlog, keterangan, data])
 
   const handleCheckboxChange = (rowIndex, type) => {
     const updatedData = [...data];
@@ -30,20 +35,7 @@ export function CustomTable({ onChange, pmType }) {
       updatedData[rowIndex].sudahDikerjakan.ya = false;
     }
     setData(updatedData);
-    onChange({ backlog, submittedData: getCurrentData() }); // Trigger onChange on checkbox change
-  };
-
-  const handleKeteranganChange = (rowIndex, value) => {
-    const updatedData = [...data];
-    updatedData[rowIndex].keterangan = value;
-    setData(updatedData);
-    onChange({ backlog, submittedData: getCurrentData() }); // Trigger onChange on keterangan change
-  };
-
-  const handleBacklogChange = (event) => {
-    setBacklog(event.target.value);
-    onChange({ backlog, submittedData: getCurrentData() }); // Trigger onChange on backlog change
-  };
+  }
 
   const getCurrentData = () => {
     return data.map((row) => ({
@@ -52,10 +44,9 @@ export function CustomTable({ onChange, pmType }) {
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 2, marginTop: 2,}}>
-      <TableContainer component={Paper} sx={{ width: '80%', overflow: 'auto', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }}>
-        <Table aria-label="customized table"
-        style={{backgroundColor:"white"}}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5}}>
+      <TableContainer component={Paper} sx={{ width: '85%', overflow: 'auto', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }}>
+        <Table aria-label="customized table">
           <TableHead sx={{backgroundColor:"teal"}}>
             <TableRow>
               <TableCell style={{ position: 'sticky', left: 0, backgroundColor: 'teal', zIndex: 1, width:"5%", fontWeight:"bold", color:"white" }} >No</TableCell>
@@ -77,31 +68,31 @@ export function CustomTable({ onChange, pmType }) {
                 row={row}
                 rowIndex={rowIndex}
                 handleCheckboxChange={handleCheckboxChange}
-                handleKeteranganChange={handleKeteranganChange}
               />
             ))}
           </TableBody>
         </Table>
-          <Box sx={{ px: 2 }}>
+          <Box sx={{ px: 2, position:"sticky", left:0, zIndex:1 }}>
         <TextField
         label="Backlog"
         value={backlog}
         multiline
-        onChange={handleBacklogChange}
+        onChange={(e) => setBacklog(e.target.value)}
         margin="normal"
         rows={5}
         fullWidth
         />
         </Box>
-          <Box sx={{ px: 2 }}>
+          <Box sx={{ px: 2, position:"sticky", left:0, zIndex:1 }}>
         <TextField
         label="Keterangan"
-        // value={keterangan}
+        value={keterangan}
         multiline
-        // onChange={handleBacklogChange}
+        onChange={(e)=> setKeterangan(e.target.value)}
         margin="normal"
         rows={5}
         fullWidth
+        style={{paddingBottom:"45px"}}
         />
         </Box>
       </TableContainer>

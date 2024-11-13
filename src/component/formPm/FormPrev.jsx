@@ -65,7 +65,6 @@ export function FormPrev( { onChange }) {
                                 variant="outlined"
                                 onChange={(e)=> {
                                     setUnit(e.target.value)
-                                    handleChange()
                                 }}
                                 value={unit}
                                 fullWidth
@@ -78,7 +77,6 @@ export function FormPrev( { onChange }) {
                                 label="No Hm"
                                 onChange={(e)=> {
                                     setHm(e.target.value)
-                                    handleChange()
                                 }}
                                 value = {hm}
                                 size="small"

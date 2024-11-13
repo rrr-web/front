@@ -67,6 +67,7 @@ export function Layout() {
 
   return (
     <>
+    <Box sx={{position:"relative"}}>    
       <FormPrev onChange={handleFormData} errors={errors} />
       
       {/* Tabel hanya muncul jika pm dipilih */}
@@ -77,14 +78,24 @@ export function Layout() {
 
       {/* Tombol Submit hanya muncul jika showTable true */}
       {showTable && (
-        <Box sx={{ mt: 2 }}>
-          <Button type="submit" variant="contained" color="primary" onClick={buttonSubmit}>
-            Submit
-          </Button>
-        </Box>
-      )}
+
+    <Box> 
+      <Button 
+        type="submit" 
+        sx={{position:"absolute", right:"80px",
+        bottom:{xs: '0.5rem', sm: '0.5rem', md: '0.5rem' },
+       right: {xs: '3rem', sm: '3.5rem', md: '5rem', lg: '6.5rem', xl: '10rem'}, zIndex:999}}
+        variant="contained" 
+        onClick={buttonSubmit}
+        style={{backgroundColor:"#008080"}}>
+          Submit
+      </Button>
+    </Box>
+)}
+
 
       <ConfirmationDialog open={open} handleClose={handleClose} />
+    </Box>
     </>
   );
 }
