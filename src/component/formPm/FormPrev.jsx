@@ -7,7 +7,7 @@ import {
     Select, 
     MenuItem, 
     FormControl } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function FormPrev( { onChange }) {
     const [unit, setUnit] = useState('');
@@ -17,9 +17,9 @@ export function FormPrev( { onChange }) {
     const [end, setEnd] = useState('');
     const [location, setLocation]= useState('')
 
-    const handleChange = () => {
-          onChange({ unit, hm, pm, start, end, location }); 
-      };
+    useEffect(() => {
+        onChange({ unit, hm, pm, start, end, location });
+      }, [unit, hm, pm, start, end, location, onChange]);
 
     return (
         <>
@@ -40,7 +40,7 @@ export function FormPrev( { onChange }) {
             <Container
                 sx={{
                     marginTop: '34px',
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: 'white',
                     padding: '20px',
                     borderRadius: '10px',
                     textAlign: "center",
@@ -95,7 +95,6 @@ export function FormPrev( { onChange }) {
                             value={pm}
                             onChange={(e)=> {
                                 setPM(e.target.value)
-                                handleChange()
                             }}
                             autoWidth
                             size="small"
@@ -127,7 +126,6 @@ export function FormPrev( { onChange }) {
                                 value={start}
                                 onChange={(e)=>{ 
                                     setStart(e.target.value)
-                                    handleChange()
                                 }}
                                 required
                             />
@@ -147,7 +145,6 @@ export function FormPrev( { onChange }) {
                                 value={end}
                                 onChange={(e)=>{
                                      setEnd(e.target.value)
-                                     handleChange()
                                 }}
                                 required
                                 
@@ -158,7 +155,6 @@ export function FormPrev( { onChange }) {
                                 label="Lokasi"
                                 onChange={(e)=> {
                                     setLocation(e.target.value)
-                                    handleChange()
                                 }}
                                 value = {location}
                                 size="small"

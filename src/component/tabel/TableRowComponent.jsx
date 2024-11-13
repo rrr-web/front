@@ -1,46 +1,37 @@
 import React from 'react';
-import TableCell from '@mui/material/TableCell';
-import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
+import { TableRow, TableCell, Checkbox } from '@mui/material';
 
-function TableRowComponent({ row, rowIndex, handleCheckboxChange, handleKeteranganChange }) {
-  return (
-    <TableRow key={row.no}>
-      <TableCell style={{ position: 'sticky', left: 0, backgroundColor: '#fff', zIndex: 1 }}>
-        {row.no}
-      </TableCell>
-      <TableCell style={{ position: 'sticky', left: 50, backgroundColor: '#fff', zIndex: 1 }}>
-        {row.part}
-      </TableCell>
-      <TableCell>{row.check}</TableCell>
-      <TableCell>{row.spec}</TableCell>
-      <TableCell align="center">
-        <Checkbox
-          checked={row.sudahDikerjakan?.ya || false}
-          onChange={() => handleCheckboxChange(rowIndex, 'ya')}
-          color="primary"
-        />
-        Ya
-        <Checkbox
-          checked={row.sudahDikerjakan?.tidak || false}
-          onChange={() => handleCheckboxChange(rowIndex, 'tidak')}
-          color="secondary"
-        />
-        Tidak
-      </TableCell>
-      <TableCell>
-        <TextField
-          fullWidth
-          multiline
-          variant="outlined"
-          value={row.keterangan || ''} // Mencegah nilai undefined
-          onChange={(e) => handleKeteranganChange(rowIndex, e.target.value)}
-          rows={2}
-        />
-      </TableCell>
-    </TableRow>
-  );
+function TableRowComponent({ row, rowIndex, handleCheckboxChange }) {
+    return (
+        <TableRow key={row.no} sx={{ '& > *': { borderBottom: 'unset' } }}>
+            <>
+                <TableCell component="th" scope="row" style={{ position: 'sticky', left: 0, backgroundColor: 'white', zIndex: 1 }}>{row.no}</TableCell>
+                <TableCell align="left" style={{ position: 'sticky', left: 50, backgroundColor: 'white', zIndex: 1 }}>{row.part}</TableCell>
+                <TableCell align="center">{row.check}</TableCell>
+                <TableCell align="center">{row.spec}</TableCell>
+                <TableCell align="center" padding="checkbox">
+                    <Checkbox
+                        checked={row.sudahDikerjakan.ya}
+                        onChange={() => handleCheckboxChange(rowIndex, 'ya')}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                        color="success"
+                    />
+                </TableCell>
+                <TableCell align="center" padding="checkbox">
+                    <Checkbox
+                        checked={row.sudahDikerjakan.tidak}
+                        onChange={() => handleCheckboxChange(rowIndex, 'tidak')}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                        sx={{
+                            '&.Mui-checked': {
+                                color: "red",
+                            },
+                        }}
+                    />
+                </TableCell>
+                </>
+        </TableRow>
+    );
 }
 
 export default TableRowComponent;

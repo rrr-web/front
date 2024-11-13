@@ -1,4 +1,3 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:717387771.
 
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
@@ -13,12 +12,11 @@ export default function FilledAlerts({ errors }) {
   return (
     <Stack
     sx={{
-      width: "100%",
-      position: "fixed", // Posisi tetap
-      top: 0, // Di bagian atas
+      width: "30%",
+      position: "fixed",
+      top: 0,
       left: 0,
-      zIndex: 1000, // Z-index tinggi
-      backgroundColor: "#fff", // Latar belakang putih (opsional)
+      zIndex: 1000,
       padding: "10px",
     }}
     spacing={2}
