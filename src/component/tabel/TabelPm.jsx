@@ -8,12 +8,12 @@ import TableCell from "@mui/material/TableCell";
 import Box from "@mui/material/Box";
 import TableRowComponent from "./TableRowComponent";
 import initialData from "./source/data";
-import { Button, TableContainer, TextField } from "@mui/material";
+import { TableContainer, TextField } from "@mui/material";
 
 export function CustomTable({ onChange, pmType }) {
   const [data, setData] = useState([]);
   const [backlog, setBacklog] = useState("");
-  const [keterangan, setKeterangan] = useState("");
+  const [information, setInformation] = useState("");
 
   useEffect(() => {
     // Ambil data yang sesuai dengan pmType dari initialData
@@ -22,8 +22,8 @@ export function CustomTable({ onChange, pmType }) {
   }, [pmType]);
 
   useEffect(() =>{
-    onChange({ backlog, keterangan, submittedData: getCurrentData() });
-  },[backlog, keterangan, data])
+    onChange({ backlog, information, submittedData: getCurrentData() });
+  },[backlog, information, data])
 
   const handleCheckboxChange = (rowIndex, type) => {
     const updatedData = [...data];
@@ -85,10 +85,10 @@ export function CustomTable({ onChange, pmType }) {
         </Box>
           <Box sx={{ px: 2, position:"sticky", left:0, zIndex:1 }}>
         <TextField
-        label="Keterangan"
-        value={keterangan}
+        label="information"
+        value={information}
         multiline
-        onChange={(e)=> setKeterangan(e.target.value)}
+        onChange={(e)=> setInformation(e.target.value)}
         margin="normal"
         rows={5}
         fullWidth

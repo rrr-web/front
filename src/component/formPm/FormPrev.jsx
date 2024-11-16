@@ -21,6 +21,7 @@ export function FormPrev( { onChange }) {
         onChange({ unit, hm, pm, start, end, location });
       }, [unit, hm, pm, start, end, location, onChange]);
 
+
     return (
         <>
             <header style={{
@@ -59,7 +60,7 @@ export function FormPrev( { onChange }) {
                     <Grid2 container spacing={2} flexDirection={"column"} justifyContent={"center"}>
                         <Grid2 xs={12} sm={6}>
                             <TextField
-                                label="No Unit"
+                                label="Nomor Unit"
                                 type="text"
                                 size="small"
                                 variant="outlined"
@@ -74,7 +75,7 @@ export function FormPrev( { onChange }) {
                         </Grid2>
                         <Grid2 xs={12} sm={6}>
                             <TextField
-                                label="No Hm"
+                                label="Hours Meter"
                                 onChange={(e)=> {
                                     setHm(e.target.value)
                                 }}
@@ -87,8 +88,10 @@ export function FormPrev( { onChange }) {
                             />
                         </Grid2>
                         <FormControl>
-                        <InputLabel id="pm-label">PM</InputLabel>
+                        <InputLabel id="pm-label"></InputLabel>
                         <Select
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2035396802.
+                            label="Jenis Service"
                             labelId="pm-label"
                             value={pm}
                             onChange={(e)=> {

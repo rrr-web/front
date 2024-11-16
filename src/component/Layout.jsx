@@ -52,14 +52,36 @@ export function Layout() {
   };
 
   // Handle dialog close after confirmation
-  const handleClose = (confirmed) => {
+  const handleClose = async (confirmed) => {
     if (confirmed) {
-      // Logic for sending data can be added here
-      // Example: API call to save data
+      const endPoint = 'http://localhost:3000/formService';
+  
+      try {
+        const response = await fetch(endPoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...formPrev,
+            ...formTable,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+  
+        const data = await response.json();
+        console.log('Data saved successfully:', data);
+        // Optionally, handle the response data here (e.g., show a success message)
+      } catch (error) {
+        console.error('Error saving data:', error);
+        // Optionally, handle the error here (e.g., show an error message)
+      }
     }
-    setOpen(false);
-    console.log("Form Data:", formPrev);
-    console.log("Table Data:", formTable)
+    
+    setOpen(false)
   };
 
   
@@ -82,7 +104,7 @@ export function Layout() {
     <Box> 
       <Button 
         type="submit" 
-        sx={{position:"absolute", right:"80px",
+        sx={{position:"absolute",
         bottom:{xs: '0.5rem', sm: '0.5rem', md: '0.5rem' },
        right: {xs: '3rem', sm: '3.5rem', md: '5rem', lg: '6.5rem', xl: '10rem'}, zIndex:999}}
         variant="contained" 
