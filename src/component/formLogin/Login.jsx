@@ -38,6 +38,7 @@ export function Login(){
                     fullWidth 
                     margin="normal" 
                     required
+                    autoComplete="current-username"
                     value={user}
                     onChange={(e) => setUser(e.target.value)} 
                 />
@@ -48,6 +49,7 @@ export function Login(){
                     fullWidth 
                     margin="normal" 
                     required
+                    autoComplete="current-password"
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
                 />

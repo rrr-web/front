@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import TableRowComponent from "./TableRowComponent";
 import initialData from "./source/data";
 import { TableContainer, TextField } from "@mui/material";
+
 
 export function CustomTable({ onChange, pmType }) {
   const [data, setData] = useState([]);
@@ -22,8 +23,13 @@ export function CustomTable({ onChange, pmType }) {
   }, [pmType]);
 
   useEffect(() =>{
+    const getCurrentData = () => {
+      return data.map((row) => ({
+        sudahDikerjakan: row.sudahDikerjakan.ya
+      }));
+    };
     onChange({ backlog, information, submittedData: getCurrentData() });
-  },[backlog, information, data])
+  },[backlog, information, data, onChange])
 
   const handleCheckboxChange = (rowIndex, type) => {
     const updatedData = [...data];
@@ -37,11 +43,7 @@ export function CustomTable({ onChange, pmType }) {
     setData(updatedData);
   }
 
-  const getCurrentData = () => {
-    return data.map((row) => ({
-      sudahDikerjakan: row.sudahDikerjakan.ya
-    }));
-  };
+  
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5, mb: 5}}>
@@ -99,3 +101,5 @@ export function CustomTable({ onChange, pmType }) {
     </Box>
   );
 }
+
+

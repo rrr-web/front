@@ -1,7 +1,7 @@
 
-import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import PropTypes from 'prop-types';
 
 export default function FilledAlerts({ errors }) {
   // Tambahkan pengecekan kondisi
@@ -29,3 +29,7 @@ export default function FilledAlerts({ errors }) {
   </Stack>
 );
 }
+
+FilledAlerts.propTypes = {
+  errors: PropTypes.arrayOf(PropTypes.string),  // errors harus berupa array yang berisi string
+};

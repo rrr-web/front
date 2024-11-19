@@ -8,6 +8,7 @@ import {
     MenuItem, 
     FormControl } from "@mui/material";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export function FormPrev( { onChange }) {
     const [unit, setUnit] = useState('');
@@ -87,7 +88,8 @@ export function FormPrev( { onChange }) {
                                 required
                             />
                         </Grid2>
-                        <FormControl>
+                        <Grid2 xs={12} sm={6}>
+                        <FormControl fullWidth required>
                         <InputLabel id="pm-label"></InputLabel>
                         <Select
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2035396802.
@@ -112,6 +114,7 @@ export function FormPrev( { onChange }) {
                             <MenuItem value={"pm2000"}>Preventive Maintenance 2000</MenuItem>
                         </Select>
                         </FormControl>
+                        </Grid2>
                         <Grid2 xs={12} sm={6}>
                             <TextField
                                 label="Mulai"
@@ -169,5 +172,8 @@ export function FormPrev( { onChange }) {
                 </main>
             </Container>
         </>
-    );
+    )
+}
+FormPrev.propTypes ={
+    onChange: PropTypes.func.isRequired
 }

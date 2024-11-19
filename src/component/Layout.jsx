@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 import ConfirmationDialog from "./tabel/ConfirmationDialog";
 import { CustomTable } from "./tabel/TabelPm";
 import FilledAlerts from "./tabel/Alert";
+import ResponsiveAppBar from "./navBar/NavBar";
 
 export function Layout() {
   const [formPrev, setFormPrev] = useState({});
@@ -29,8 +30,7 @@ export function Layout() {
   }
 
   // Submit button logic
-  function buttonSubmit(e) {
-    e.preventDefault();
+  function buttonSubmit() {
     const validationErrors = validateForm(formPrev);
 
     if (validationErrors.length > 0) {
@@ -72,12 +72,8 @@ export function Layout() {
           throw new Error('Network response was not ok');
         }
   
-        const data = await response.json();
-        console.log('Data saved successfully:', data);
-        // Optionally, handle the response data here (e.g., show a success message)
       } catch (error) {
         console.error('Error saving data:', error);
-        // Optionally, handle the error here (e.g., show an error message)
       }
     }
     
@@ -89,6 +85,7 @@ export function Layout() {
 
   return (
     <>
+    <ResponsiveAppBar />
     <Box sx={{position:"relative"}}>    
       <FormPrev onChange={handleFormData} errors={errors} />
       

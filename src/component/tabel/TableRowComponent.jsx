@@ -1,4 +1,3 @@
-import React from 'react';
 import { TableRow, TableCell, Checkbox } from '@mui/material';
 
 function TableRowComponent({ row, rowIndex, handleCheckboxChange }) {
