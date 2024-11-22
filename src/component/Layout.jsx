@@ -76,7 +76,8 @@ export function Layout() {
         console.error('Error saving data:', error);
       }
     }
-    
+    console.log(formPrev)
+    console.log(formTable)
     setOpen(false)
   };
 
