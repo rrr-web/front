@@ -1,11 +1,13 @@
-import { Data } from "../Dataform/Data";
 import ResponsiveAppBar from "../navBar/NavBar";
+import ShowData from "../tabel/ShowDataTable";
 
-export function Home () {
+function Home () {
     return(
         <>
             <ResponsiveAppBar />
-            <Data />
+            <ShowData />
         </>
     )
 }
+
+export default Home

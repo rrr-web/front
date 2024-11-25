@@ -1,12 +1,11 @@
-import { Layout } from './component/Layout';
-import { Login } from './component/formLogin/Login';
-import { Data } from './component/Dataform/Data';
-import { Home } from './component/home/Home'
+import Home from "./component/page/Home";
+import { Layout } from "./component/page/Layout";
+
 
 function App() {
   return (
     <>
-    <Home />
+    <Layout />
     </>
   )
 }

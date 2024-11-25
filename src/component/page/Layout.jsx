@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { FormPrev } from "./formPm/FormPrev";
+import { FormPrev } from "../form/FormPrev";
 import { Box, Button } from "@mui/material";
-import ConfirmationDialog from "./tabel/ConfirmationDialog";
-import { CustomTable } from "./tabel/TabelPm";
-import FilledAlerts from "./tabel/Alert";
-import ResponsiveAppBar from "./navBar/NavBar";
+import { CustomTable } from "../tabel/TabelPm";
+import ResponsiveAppBar from "../navBar/NavBar";
+import ConfirmationDialog from "../dialog/ConfirmationDialog";
 
 export function Layout() {
   const [formPrev, setFormPrev] = useState({});
