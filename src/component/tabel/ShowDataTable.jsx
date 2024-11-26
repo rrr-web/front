@@ -14,22 +14,29 @@ import {
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import useFetch from "../hook/useFetch"
 
 export function showData() {
   const [open, setOpen] = useState(false);
+  const [nestedOpen, setNestedOpen] = useState(false)
+  const { data, loading, error } = useFetch('http://localhost:3000/formService')
 
+
+  console.log(data);
+  
   return (
     <>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={6}>TEs</TableCell>
+              <TableCell colSpan={6}
+                sx={{ fontWeight: 'bold', fontSize: '20px', textAlign: 'center' }}>Record Data Preventive Maintenance</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-              <TableCell>
+              <TableCell sx={{ width: '1px' }}>
                 <IconButton
                   aria-label="expand row"
                   size="small"
@@ -38,30 +45,67 @@ export function showData() {
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
               </TableCell>
-              <TableCell component="th" scope="row">
-                
+              <TableCell component="th" scope="row" align="left">
+                <Typography>Dump Truck</Typography>
               </TableCell>
             </TableRow>
+
+
             <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+              <TableCell
+                sx={{ "& > *": { borderBottom: "unset" } }}
+                style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                   <Box sx={{ margin: 1 }}>
-                    <Typography variant="h6" gutterBottom component="div">Tes</Typography>
-                    <Table size="small" aria-label="purchases">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell align="right" component="th" scope="row">1</TableCell>
-                          <TableCell align="right">1</TableCell>
-                          <TableCell align="right">2</TableCell>
-                          <TableCell align="right">3</TableCell>
-                        </TableRow>
-                      </TableHead>
+                    <Table size="small">
                       <TableBody>
+                        <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+                          <TableCell sx={{ width: '30px' }}>
+                            <IconButton
+                              aria-label="expand row"
+                              size="small"
+                              onClick={() => setNestedOpen(!nestedOpen)}
+                            >
+                              {nestedOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                            </IconButton>
+                          </TableCell>
+                          <TableCell component='th'>DT0001</TableCell>
+                        </TableRow>
+
                         <TableRow>
-                          <TableCell align="right">4</TableCell>
-                          <TableCell align="right">5</TableCell>
-                          <TableCell align="right">6</TableCell>
-                          <TableCell align="right">7</TableCell>
+                          
+                          <TableCell sx={{ "& > *": { borderBottom: "unset" } }}
+                style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                            <Collapse in={nestedOpen} timeout="auto" unmountOnExit>
+                              <Box>
+                                <Table>
+                                  <TableBody>
+                                    <TableRow>
+                                      <TableHead>
+                                        <TableRow>
+                                          <TableCell>HM</TableCell>
+                                          <TableCell>PM</TableCell>
+                                          <TableCell>Mulai Service</TableCell>
+                                          <TableCell>Selesai Service</TableCell>
+                                          <TableCell>Lokasi</TableCell>
+                                          <TableCell>Action</TableCell>
+                                        </TableRow>
+                                      </TableHead>
+                                      <TableBody>
+                                        <TableRow>
+                                        <TableCell>1200</TableCell>
+                                        <TableCell>pm250</TableCell>
+                                        <TableCell>wsws</TableCell>
+                                        <TableCell>swsw</TableCell>
+                                        <TableCell>dwd</TableCell>
+                                        </TableRow>
+                                      </TableBody>
+                                    </TableRow>
+                                  </TableBody>
+                                </Table>
+                              </Box>
+                            </Collapse>
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
