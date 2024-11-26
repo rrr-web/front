@@ -1,47 +1,79 @@
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Paper } from '@mui/material';
-import useFetch from '../hook/useFetch';
+import {
+  Box,
+  Collapse,
+  IconButton,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-export default function ShowData() {
-    const {data, loading, error} = useFetch('http://localhost:3000/formService')
-
-    if (loading) {
-        return <div>Loading...</div>;
-      }
-    
-      if (error) {
-        return <div>Error: {error}</div>;
-      }      
+export function showData() {
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-    {data.map((list, index) =>{
-        return(
-            <Paper key={index} elevation={3}  sx={{ 
-                width: '90%'
-              }}>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ArrowDropDownIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
-                    >
-                      <Typography>{list.unit}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                       
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                  </Paper>
-        )   
-    })}
-   
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={6}>TEs</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+              <TableCell>
+                <IconButton
+                  aria-label="expand row"
+                  size="small"
+                  onClick={() => setOpen(!open)}
+                >
+                  {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                  <Box sx={{ margin: 1 }}>
+                    <Typography variant="h6" gutterBottom component="div">Tes</Typography>
+                    <Table size="small" aria-label="purchases">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="right" component="th" scope="row">1</TableCell>
+                          <TableCell align="right">1</TableCell>
+                          <TableCell align="right">2</TableCell>
+                          <TableCell align="right">3</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell align="right">4</TableCell>
+                          <TableCell align="right">5</TableCell>
+                          <TableCell align="right">6</TableCell>
+                          <TableCell align="right">7</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </Box>
+                </Collapse>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }
+
+export default showData;

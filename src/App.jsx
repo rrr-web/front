@@ -5,7 +5,7 @@ import { Layout } from "./component/page/Layout";
 function App() {
   return (
     <>
-    <Layout />
+    <Home />
     </>
   )
 }
